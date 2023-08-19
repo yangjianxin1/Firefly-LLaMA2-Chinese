@@ -25,7 +25,7 @@ class CausalLMLoss(Loss):
     """
     预训练损失
     """
-    def __init__(self, ignore_index):
+    def __init__(self, ignore_index=-100):
         super().__init__()
         self.ignore_index = ignore_index
         self.loss_fn = nn.CrossEntropyLoss(ignore_index=ignore_index)
@@ -33,11 +33,11 @@ class CausalLMLoss(Loss):
     def __call__(self, model, inputs, training_args, return_outputs=False):
         input_ids = inputs['input_ids']
         attention_mask = inputs['attention_mask']
+        labels = inputs['labels']
         # 模型前馈预测
         outputs = model(input_ids=input_ids, attention_mask=attention_mask, return_dict=True)
         logits = outputs["logits"] if isinstance(outputs, dict) else outputs[0]
 
-        labels = input_ids.clone()
         shift_logits = logits[..., :-1, :].contiguous()
         shift_labels = labels[..., 1:].contiguous()
         # Flatten the tokens
