@@ -17,6 +17,7 @@ from typing import Optional
 import os
 import torch
 from os.path import join
+from transformers.modeling_utils import unwrap_model
 
 
 logger = logging.get_logger(__name__)
@@ -81,6 +82,10 @@ class LoRATrainer(Trainer):
         super(LoRATrainer, self)._save(output_dir, state_dict)
         # 如果需要扩词表，则保存word_tokens和lm_head的权重
         if self.args.train_embedding:
-            logger.info('Saving embed_tokens and lm_head')
-            torch.save(self.model.model.model.embed_tokens.state_dict(), join(self.args.output_dir, 'embed_tokens.bin'))
-            torch.save(self.model.model.lm_head.state_dict(), join(self.args.output_dir, 'lm_head.bin'))
+            # Only save the model itself if we are using distributed training
+            model = unwrap_model(self.model)
+
+            output_dir = join(self.args.output_dir, f"checkpoint-{self.state.global_step}")
+            logger.info(f'Saving embed_tokens and lm_head to {output_dir}')
+            torch.save(model.model.embed_tokens.state_dict(), join(output_dir, 'embed_tokens.bin'))
+            torch.save(model.lm_head.state_dict(), join(output_dir, 'lm_head.bin'))
