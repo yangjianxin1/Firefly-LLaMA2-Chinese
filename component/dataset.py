@@ -8,6 +8,20 @@ import pickle
 from tqdm import tqdm
 
 
+class IterableDataset(torch.utils.data.IterableDataset):
+    def __init__(self, file):
+        self.file = file
+
+    def __iter__(self):
+        with open(self.file, 'rb') as f:
+            while True:
+                try:
+                    data = pickle.load(f)
+                except:
+                    break
+                yield data
+
+
 class Dataset(torch.utils.data.Dataset):
     def __init__(self, data_list):
         self.data_list = data_list
@@ -55,8 +69,8 @@ class PretrainDataProcessor(object):
         windows = []
         for i in range(0, len(input_ids), self.window_step_size):
             window = input_ids[i: i+self.max_seq_length]
-            # 小于min_seq_length的序列，则将其抛弃
-            if len(window) < self.min_seq_length:
+            # 小于min_seq_length的序列，则将其抛弃。
+            if len(window) < self.min_seq_length and i > 0:
                 continue
             windows.append(window)
         return windows
@@ -79,6 +93,7 @@ class PretrainDataProcessor(object):
         """
         logger.info('Loading data from: {}'.format(self.data_path))
         # 创建缓存路径
+        # todo 保存到output目录
         cache_dir = join(self.data_path, 'cache')
         os.makedirs(cache_dir, exist_ok=True)
 
