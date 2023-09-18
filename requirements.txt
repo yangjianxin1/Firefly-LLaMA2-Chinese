@@ -1,0 +1,17 @@
+accelerate==0.21.0
+transformers==4.30.2
+peft==0.4.0
+bitsandbytes==0.39.0
+loguru
+numpy
+pandas
+tqdm
+deepspeed==0.9.5
+tensorboard
+sentencepiece
+transformers_stream_generator
+tiktoken
+einops
+torch==1.13.0
+openpyxl
+httpx
