@@ -34,8 +34,8 @@
 最后使用大规模中英文多轮对话指令对模型进行训练。我们对模型进行了榜单评测和人工评测，与现有的开源工作相比，具有不错的竞争力。
 
 在Open LLM Leaderboard和CMMLU上，我们的模型超越了Linly、Yayi、FlagAlpha等模型；
-在Open LLM Leaderboard上超越Ziya，在CMMLU上比Ziya略低0.43分。在人工测评中，我们的模型以33.08%获胜、60.77%平局、6.15%失败的成绩，超越Linly。
-我们还开源了firelfy-baichuan2-13b模型，在OpenCompass的CMMLU榜单上以56.83的分数，位列第8，比百川官方模型略低1.57分。
+在Open LLM Leaderboard上超越Ziya，在CMMLU上比Ziya略低0.43分。在人工测评中，我们的模型以**33.08%获胜**、60.77%平局、6.15%失败的成绩，超越Linly。
+我们还开源了firelfy-baichuan2-13b模型，在OpenCompass的CMMLU榜单上以56.83的分数，**位列第8**，比百川官方模型略低1.57分。
 
 **更重要的是，在整个增量预训练和指令微调阶段，我们最多仅使用了4\*V100的GPU，训练更加低资源高效。相较于Ziya的160\*A100，Linly的32\*A100，Chinese-LLaMA-Alpaca的48\*A40，我们所使用的训练资源少得多。**
 
