@@ -134,7 +134,7 @@ Conclusions:
 - 对于中文词表扩充模型而言，我们的模型大幅领先全量训练的linly，与全量训练的ziya非常接近，但与chinese-alpaca-2模型还存在一定的差距。
 - firefly-baichuan2-13b一骑绝尘，并且在OpenCompass的CMMLU榜单，该分数可排第8，小幅落后于百川官方模型。firefly-baichuan2-13b的训练数据是firefly-llama2-13b-chat的子集，且量级少得多，进一步验证了基座模型的重要性。
 - linly、ziya、openbuddy均为词表扩充+全量参数训练的模型，并且ziya进行了更为充分的增量预训练，以及RLHF，但这三者在CMMLU上的表现与LoRA训练的chinese-alpaca-2存在较大的差距。这一现象可能与它们的训练数据分布更为相关，可能前三者的训练数据对于CMMLU分数的提升较为有限，需要更全面的评测方式。
-- 我们的模型在CMMLU上的指标与chinese-alpaca-2也存在一定的差距。这一现象很大程度与增量预训练数据量和数据分布相关，我们的增量预训练数据仅为22GB，增量预训练不够充分，且大部分为新闻语料，对于CMMLU能力的提升有限。
+- 我们的模型在CMMLU上的指标与chinese-alpaca-2也存在一定的差距。这一现象很大程度与增量预训练数据量和数据分布相关，我们的增量预训练数据仅为22GB(未充分使用，详情见训练细节)，增量预训练不够充分，且大部分为新闻语料，对于CMMLU能力的提升有限。
 - yayi、flagalpha、belle均未进行词表扩充，直接在原生llama2模型上微调，但三者表现差异巨大。我们的模型大幅领先yayi与flagalpha，略低于belle。
 
 ### 人工评测
