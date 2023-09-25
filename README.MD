@@ -171,7 +171,7 @@ Conclusions:
 
 <img src="pics/token-number.png" width="450">
 
-我们将增量预训练数据集命名为firefly-pretrain-dataset，主要包含CLUE、ThucNews、CNews、COIG、维基百科等开源数据集，以及我们收集的古诗词、散文、文言文等。数据分布如下图：
+我们将增量预训练数据集命名为firefly-pretrain-dataset，主要包含CLUE、ThucNews、CNews、COIG、维基百科等开源数据集，以及我们收集的古诗词、散文、文言文等，数据分布如下图。由于训练资源等原因，在增量预训练阶段，我们并未充分利用全部数据，仅消耗了大约2B的token。
 
 <img src="pics/pretrain-data.png" width="450">
 
