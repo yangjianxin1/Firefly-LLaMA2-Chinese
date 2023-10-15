@@ -86,6 +86,8 @@ class LoRATrainer(Trainer):
             model = unwrap_model(self.model)
 
             output_dir = join(self.args.output_dir, f"checkpoint-{self.state.global_step}")
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
             logger.info(f'Saving embed_tokens and lm_head to {output_dir}')
             torch.save(model.model.model.embed_tokens.state_dict(), join(output_dir, 'embed_tokens.bin'))
             torch.save(model.model.lm_head.state_dict(), join(output_dir, 'lm_head.bin'))
