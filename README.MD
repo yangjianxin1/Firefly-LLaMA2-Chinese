@@ -28,6 +28,8 @@
 
 
 ## 项目简介
+技术文章：[QLoRA增量预训练与指令微调，及汉化Llama2的实践](https://mp.weixin.qq.com/s/26-Qxma9M2wGoTQgOlKRmQ)
+
 本项目与[Firefly](https://github.com/yangjianxin1/Firefly)一脉相承，专注于**低资源增量预训练**，既支持对Baichuan2、Qwen、InternLM等原生中文模型进行增量预训练，也可对LLaMA2、Falcon等英文模型进行中文词表扩充，然后进行增量预训练。
 
 我们开源了Firefly-LLaMA2-Chinese模型，这是中英双语系列模型。我们以LLaMA2🦙为基座模型，对LLaMA2进行中文词表扩充，使用22GB中英文预训练语料对其进行增量预训练。
